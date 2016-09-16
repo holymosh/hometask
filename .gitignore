@@ -1,0 +1,4 @@
+*.sdf
+prj/nod/nod/nod.sln
+*.tlog
+prj/nod/nod/nod/Debug/vc140.idb

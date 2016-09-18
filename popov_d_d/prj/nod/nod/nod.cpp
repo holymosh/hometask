@@ -2,33 +2,31 @@
 
 using namespace std;
 
-int nod(int firstValue, int secondValue) 
+int nod(int firstValue, int secondValue)
 {
-	int c;
+	int localValue;
 	while (secondValue)
 	{
-		c = firstValue % secondValue;
+		localValue = firstValue % secondValue;
 		firstValue = secondValue;
-		secondValue = c;
+		secondValue = localValue;
 		
 	}
 	return abs(firstValue);
 }
 
+void testNod() 
+{
+	int testValues[]{ 8,16,-9,-12 ,-5,-11,100,100};
+	for (int i = 0; i < 8; i+=2)
+	{
+		cout << "nod(" << testValues[i] << "," << testValues[i+1] << ") : " << nod(testValues[i],testValues[i+1]) << "\n";
+	}
+	
+}
+
 int main()
 {
-	int firstValue(8);
-	int secondValue(16);
-	cout<<"nod(8,16) :"<<nod(firstValue, secondValue)<<"\n";
-	firstValue=-9;
-	secondValue = 12;
-	cout << "nod(-9,12) :" << nod(secondValue, firstValue) << "\n";
-	firstValue = -11;
-	secondValue = -5;
-	cout << "nod(-5,-11) :" << nod(secondValue, firstValue) << "\n";
-	firstValue = 100;
-	secondValue = 100;
-	cout << "nod(100,100) :" << nod(secondValue, firstValue) << "\n";
+	testNod();
 	return 0;
-	
 }

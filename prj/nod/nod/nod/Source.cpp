@@ -2,7 +2,8 @@
 
 using namespace std;
 
-int nod(int firstValue, int secondValue) {
+int nod(int firstValue, int secondValue) 
+{
 	int c;
 	while (secondValue)
 	{

@@ -16,10 +16,10 @@ int nod(int firstValue, int secondValue) {
 
 int main()
 {
-	int firstValue = 8;
-    	int secondValue = 16;
+	int firstValue(8);
+	int secondValue(16);
 	cout<<"nod(8,16) :"<<nod(firstValue, secondValue)<<"\n";
-	firstValue = -9;
+	firstValue=-9;
 	secondValue = 12;
 	cout << "nod(-9,12) :" << nod(secondValue, firstValue) << "\n";
 	firstValue = -11;

@@ -13,6 +13,7 @@ public:
 	std::istream& readFrom(std::istream& istrm);
 	static const char slash{'/'};
 	~Rational();
+
 	double toDouble()
 	{
 		if (denum_) {

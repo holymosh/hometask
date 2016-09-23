@@ -5,6 +5,7 @@
 	 Complex() {}
 	 explicit Complex(const double real);
 	 Complex(const double real, const double imaginary);
+	 Complex& dual();
 	 bool operator==(const Complex& rhs) const { return (re == rhs.re) && (im == rhs.im); }
 	 bool operator!=(const Complex& rhs) const { return !operator==(rhs); }
 	 Complex& operator+=(const Complex& rhs);
@@ -18,7 +19,8 @@
 	
      double re{ 0.0 };
      double im{ 0.0 };
-	
+	 
+	 static Complex& dual(const Complex& rhs);
 	 static const char leftBrace{ '{' };
      static const char separator{ ',' };
      static const char rightBrace{ '}' };
@@ -68,6 +70,8 @@
 	 Complex second(7, 3);
 	 Complex result(first -= second);
 	 first *= second;
+	 Complex newComplex(Complex::dual(first));
+	 newComplex = second.dual();
 	 system("pause");
 	 return 0;
 	 }
@@ -113,6 +117,7 @@
 	 im *= rhs;
 	 return *this;
  }
+
  Complex& Complex::operator*=(const Complex& rhs)
  {
 	 double newRe(re*rhs.re - im*rhs.im);
@@ -120,7 +125,16 @@
 	 re = newRe;
 	 im = newIm;
 	 return *this;
-	 //return Complex(re*rhs.re - im*rhs.im, re*rhs.im + im*rhs.re);
+ }
+
+ Complex& Complex::dual() 
+ {
+	 return Complex(re, -im);
+ }
+
+ Complex& Complex::dual(const Complex& rhs)
+ {
+	 return Complex(rhs.re, -rhs.im);
  }
 
  std::ostream& Complex::writeTo(std::ostream& ostrm) const

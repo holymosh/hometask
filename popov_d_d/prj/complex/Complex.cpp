@@ -101,7 +101,9 @@
 
  Complex& Complex::operator-=(const Complex& rhs)
  {
-	 return Complex(re-rhs.re,im - rhs.im);
+	 re -= rhs.re;
+	 im -= rhs.im;
+	 return *this;
  }
 
  Complex operator+(const Complex& lhs, const Complex& rhs)

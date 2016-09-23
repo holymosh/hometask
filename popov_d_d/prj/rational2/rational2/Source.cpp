@@ -21,28 +21,13 @@ public:
 		}
 	}
 	
-	Rational& operator+(Rational& obj) 
-	{
-		int denum(denum_ * obj.denum_);
-		int num(num_*obj.denum_ + obj.num_*denum_);
-		return Rational(num, denum);
-	}
-
-	Rational& operator-(Rational& obj)
-	{
-		int denum(denum_ * obj.denum_);
-		int num(num_*obj.denum_ - obj.num_*denum_);
-		return Rational(num, denum);
-	}
-
 	Rational& operator*(Rational& obj)
 	{
 		int denum(denum_ * obj.denum_);
 		int num(num_ * obj.num_);
 		return Rational(num, denum);
 	}
-
-	
+	Rational& operator+=(const Rational& rhs);
 
 private:
 	int num_{ 0 };
@@ -88,12 +73,37 @@ Rational::~Rational()
 {
 }
 
+Rational& Rational::operator+=(const Rational& rhs)
+{
+	num_ += rhs.num_;
+	denum_ += rhs.denum_;
+	return *this;
+}
+
+Rational& operator-=(const Rational& lhs, const Rational rhs) 
+{
+	Rational sum(lhs - rhs);
+}
+
+
+//Rational& Rational::operator*=(const Rational& rhs)
+//{
+//	1
+//}
+
+Rational operator+(const Rational& lhs , const Rational rhs)
+{
+	Rational sum(lhs);
+	sum += rhs;
+	return sum;
+}
+
+
 int main()
 {
 	Rational first(1,2);
 	Rational second(3, 4);
 	Rational sum(first + second);
-	
 	cout << sum;
 	return 0;
 }

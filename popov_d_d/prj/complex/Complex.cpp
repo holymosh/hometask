@@ -10,8 +10,8 @@
 	 Complex& operator+=(const Complex& rhs);
 	 Complex& operator+=(const double rhs) { return operator+=(Complex(rhs)); }
 	 Complex& operator-=(const Complex& rhs);
-	 //Complex& operator-=(const double rhs) { return operator-=(Complex(rhs)); }
-	 //Complex& operator*=(const Complex& rhs);
+	 Complex& operator-=(const double rhs) { return operator-=(Complex(rhs)); }
+	 Complex& operator*=(const Complex& rhs); // to do реализовать это
 	 Complex& operator*=(const double rhs);
 	 std::ostream& writeTo(std::ostream& ostrm) const;
 	 std::istream& readFrom(std::istream& istrm);
@@ -64,6 +64,10 @@
 	 testParse("{8.9,9}");
 	 testParse("{8.9, 9}");
 	 testParse("{8.9,9");
+	 Complex first(8, 1);
+	 Complex second(7, 3);
+	 Complex result(first -= second);
+	 first *= second;
 	 system("pause");
 	 return 0;
 	 }
@@ -90,6 +94,7 @@
  {
 	 return Complex(re-rhs.re,im - rhs.im);
  }
+
  Complex operator+(const Complex& lhs, const Complex& rhs)
  {
 	 Complex sum(lhs);
@@ -107,7 +112,11 @@
 	 re *= rhs;
 	 im *= rhs;
 	 return *this;
-	 }
+ }
+ Complex& Complex::operator*=(const Complex& rhs)
+ {
+	 return Complex(re*rhs.re - im*rhs.im, re*rhs.im + im*rhs.re);
+ }
 
  std::ostream& Complex::writeTo(std::ostream& ostrm) const
  {

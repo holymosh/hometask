@@ -11,7 +11,7 @@
 	 Complex& operator+=(const double rhs) { return operator+=(Complex(rhs)); }
 	 Complex& operator-=(const Complex& rhs);
 	 Complex& operator-=(const double rhs) { return operator-=(Complex(rhs)); }
-	 Complex& operator*=(const Complex& rhs); // to do реализовать это
+	 Complex& operator*=(const Complex& rhs); 
 	 Complex& operator*=(const double rhs);
 	 std::ostream& writeTo(std::ostream& ostrm) const;
 	 std::istream& readFrom(std::istream& istrm);
@@ -115,7 +115,12 @@
  }
  Complex& Complex::operator*=(const Complex& rhs)
  {
-	 return Complex(re*rhs.re - im*rhs.im, re*rhs.im + im*rhs.re);
+	 double newRe(re*rhs.re - im*rhs.im);
+	 double newIm(re*rhs.im + im*rhs.re);
+	 re = newRe;
+	 im = newIm;
+	 return *this;
+	 //return Complex(re*rhs.re - im*rhs.im, re*rhs.im + im*rhs.re);
  }
 
  std::ostream& Complex::writeTo(std::ostream& ostrm) const

@@ -9,7 +9,7 @@
 	 bool operator!=(const Complex& rhs) const { return !operator==(rhs); }
 	 Complex& operator+=(const Complex& rhs);
 	 Complex& operator+=(const double rhs) { return operator+=(Complex(rhs)); }
-	 //Complex& operator-=(const Complex& rhs);
+	 Complex& operator-=(const Complex& rhs);
 	 //Complex& operator-=(const double rhs) { return operator-=(Complex(rhs)); }
 	 //Complex& operator*=(const Complex& rhs);
 	 Complex& operator*=(const double rhs);
@@ -59,11 +59,12 @@
  {
  using namespace std;
 
-		 Complex z;
+	 Complex z;
 	 z += Complex(8.0);
 	 testParse("{8.9,9}");
 	 testParse("{8.9, 9}");
 	 testParse("{8.9,9");
+	 system("pause");
 	 return 0;
 	 }
 
@@ -83,14 +84,18 @@
 	 re += rhs.re;
 	 im += rhs.im;
 	 return *this;
-	 }
+ }
 
+ Complex& Complex::operator-=(const Complex& rhs)
+ {
+	 return Complex(re-rhs.re,im - rhs.im);
+ }
  Complex operator+(const Complex& lhs, const Complex& rhs)
  {
 	 Complex sum(lhs);
 	 sum += rhs;
 	 return sum;
-	 }
+ }
 
  Complex operator-(const Complex& lhs, const Complex& rhs)
  {

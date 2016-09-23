@@ -14,6 +14,8 @@
 	 Complex& operator-=(const double rhs) { return operator-=(Complex(rhs)); }
 	 Complex& operator*=(const Complex& rhs); 
 	 Complex& operator*=(const double rhs);
+	 Complex& operator/=(const Complex& rhs);
+	 Complex& operator/(const Complex& rhs);
 	 std::ostream& writeTo(std::ostream& ostrm) const;
 	 std::istream& readFrom(std::istream& istrm);
 	
@@ -125,6 +127,20 @@
 	 re = newRe;
 	 im = newIm;
 	 return *this;
+ }
+
+ Complex& Complex::operator/=(const Complex& rhs)
+ {
+	 double newRe((re*rhs.re+im*rhs.im)/(rhs.im*rhs.im+rhs.re*rhs.re));
+	 double newIm((rhs.re*im - re*rhs.im)/(rhs.im*rhs.im + rhs.re*rhs.re));
+	 re = newRe;
+	 im = newIm;
+	 return *this;
+ }
+
+ Complex& Complex::operator/(const Complex& rhs)
+ {
+	 return (*this /= rhs);
  }
 
  Complex& Complex::dual() 

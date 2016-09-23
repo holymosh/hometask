@@ -70,11 +70,20 @@
 	 testParse("{8.9,9");
 	 Complex first(8, 1);
 	 Complex second(7, 3);
-	 Complex result(first -= second);
+	 cout << first << "-=" << second;
+	 first -= second;
+	 cout<<"=" << first<<endl;
+	 cout << first << "*=" << second << "=";
 	 first *= second;
-	 Complex newComplex(Complex::dual(first));
-	 newComplex = second.dual();
-	 cout<<(first /= second)<<endl;
+	 cout << first << endl;
+	 Complex dualFirst(Complex::dual(first));
+	 cout << "dual for first" << dualFirst<<endl;
+	 Complex dualSecond = second.dual();
+	 cout << "dual for second" << dualSecond<<endl;
+	 cout << first << "/=" << second << "=";
+	 first /= second;
+	 cout << first << endl;
+	 cout << first << "/" << second << "=";
 	 Complex newComp(first / second);
 	 cout << newComp<<endl;
 	 system("pause");
@@ -102,7 +111,7 @@
  Complex& Complex::operator-=(const Complex& rhs)
  {
 	 re -= rhs.re;
-	 im -= rhs.im;
+	 im-=rhs.im;
 	 return *this;
  }
 

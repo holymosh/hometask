@@ -74,6 +74,9 @@
 	 first *= second;
 	 Complex newComplex(Complex::dual(first));
 	 newComplex = second.dual();
+	 cout<<(first /= second)<<endl;
+	 Complex newComp(first / second);
+	 cout << newComp<<endl;
 	 system("pause");
 	 return 0;
 	 }

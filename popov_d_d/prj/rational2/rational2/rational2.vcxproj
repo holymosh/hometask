@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="rational.cpp" />
+    <ClCompile Include="testrational.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="rational.h" />

@@ -7,7 +7,6 @@ class Rational
 public:
 	Rational();
 	~Rational();
-	Rational() {}
 	explicit Rational(const int val) : num_(val) { }
 	Rational(const int num, const int denum) : num_(num), denum_(denum) {}
 	double toDouble() const;
@@ -26,12 +25,13 @@ public:
 
 	Rational operator- (const Rational& rhs);
 	std::ostream& writeTo(std::ostream& ostrm) const;
-	std::istream& readFrom(std::istream& istrm);
+	std::istream& readFrom(std::istream& istrm) const;
 
 private:
 	int num_{ 0 };
 	int denum_{ 1 };
 	Rational normalize(const Rational argument);
+
 };
 
 Rational::Rational()

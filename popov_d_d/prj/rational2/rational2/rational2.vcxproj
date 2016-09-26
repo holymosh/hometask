@@ -21,6 +21,9 @@
   <ItemGroup>
     <ClCompile Include="rational.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="rational.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{53F698B5-CD36-4674-BAD3-677D51A2AC0F}</ProjectGuid>
     <RootNamespace>rational2</RootNamespace>

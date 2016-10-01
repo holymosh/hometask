@@ -22,7 +22,6 @@ public:
 	bool operator>(const Rational& rhs) { return (num_*rhs.denum_ > rhs.num_*denum_); }
 	bool operator<(const Rational& rhs) { return (num_*rhs.denum_ < rhs.num_*denum_); }
 	Rational operator*(const Rational& rhs) { return normalize(Rational(num_*rhs.num_, denum_*rhs.denum_)); }
-
 	Rational operator- (const Rational& rhs);
 	std::ostream& writeTo(std::ostream& ostrm) const;
 	std::istream& readFrom(std::istream& istrm) const;

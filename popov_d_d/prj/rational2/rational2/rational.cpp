@@ -17,7 +17,12 @@ Rational Rational::normalize(const Rational argument)
 	return z;
 }
 
-Rational Rational::operator- (const Rational& rhs) 
+Rational Rational::operator*(const Rational & rhs)
+{
+	return normalize(Rational(num_*rhs.num_, denum_*rhs.denum_));
+}
+
+Rational Rational::operator- (const Rational& rhs)
 {
 	return normalize(Rational(num_*rhs.denum_ - rhs.num_ * denum_, denum_ * rhs.denum_));
 	Rational result(num_*rhs.denum_ - rhs.num_ * denum_, denum_ * rhs.denum_);
@@ -27,6 +32,55 @@ Rational Rational::operator- (const Rational& rhs)
 std::ostream& Rational::writeTo(std::ostream& ostrm) const {
 	ostrm << num_ << "/" << denum_ << "\n";
 	return ostrm;
+}
+
+Rational::Rational()
+{
+}
+
+Rational::~Rational()
+{
+}
+
+Rational::Rational(const int val)
+{
+	num_=val;
+}
+
+Rational::Rational(const int num, const int denum)
+{
+	num_ = num;
+	denum_ = denum;
+}
+
+double Rational::toDouble() const
+{
+	return num_ / denum_;
+}
+
+bool Rational::operator==(const Rational & rhs) const
+{
+	return (num_ == rhs.num_) && (denum_ == rhs.denum_);
+}
+
+bool Rational::operator!=(const Rational & rhs) const
+{
+	return !operator==(rhs);
+}
+
+Rational & Rational::operator=(const Rational & rhs)
+{
+	return Rational(num_ = rhs.num_, denum_ = rhs.denum_);
+}
+
+Rational Rational::operator+(const Rational & rhs)
+{
+	return normalize(Rational(num_*rhs.denum_ + rhs.num_ * denum_, denum_ * rhs.denum_));
+}
+
+Rational Rational::operator/(const Rational & rhs)
+{
+	return normalize(Rational(num_*rhs.denum_, denum_*rhs.num_));
 }
 
 Rational& Rational:: operator+=(const Rational& a) {
@@ -53,27 +107,13 @@ Rational Rational:: operator*=(const Rational& rhs) {
 	return normalize(Rational(num_, denum_));
 }
 
- std::ostream& operator<<(std::ostream& ostrm, const Rational& a) { return a.writeTo(ostrm); }
- std::istream& operator>>(std::istream& istrm, const Rational& rhs) { return rhs.readFrom(istrm); }
+bool Rational::operator>(const Rational & rhs)
+{
+	return (num_*rhs.denum_ > rhs.num_*denum_);
+}
 
-//int main() {
-//	using namespace std;
-//	Rational a(10, 11);
-//	Rational b(1, 11);
-//	Rational c(a + b);
-//	cout << "a=" << a << " b="<<b<< endl;
-//	cout << "a+b=" << c;
-//	a += b;
-//	cout << "a+=b =" << a;
-//	cout << "a=" << a << " b=" << b << endl;
-//	c = a - b;
-//	cout << "a-b=" << c;
-//	a -= b;
-//	cout << "a-=b =" << a;
-//	c = a*b;
-//	cout << "a=" << a << " b=" << b << endl;
-//	cout << "a*b=" << c;
-//	a *= b;
-//	cout << "a*=b =" << a;
-//	system("pause");
-//};
+bool Rational::operator<(const Rational & rhs)
+{
+	return (num_*rhs.denum_ < rhs.num_*denum_);
+}
+

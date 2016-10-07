@@ -27,5 +27,7 @@ int main()
 	cout << "a*=b =" << a;
 	cout << a << "<" << b << " result" << (a < b)<<endl;
 	cout << a << ">" << b << " result" << (a > b) << endl;
+	cout << a << "!=" << b << " result" << (a != b) << endl;
+	cout << a << "==" << b << " result" << (a == b) << endl;
 	return 0;
 }

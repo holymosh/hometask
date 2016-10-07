@@ -49,6 +49,11 @@ Rational::Rational(const int val)
 
 Rational::Rational(const int num, const int denum)
 {
+	if (!denum)
+	{
+		throw std::exception("denum = 0");
+
+	}
 	num_ = num;
 	denum_ = denum;
 }

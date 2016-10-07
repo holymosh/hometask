@@ -54,6 +54,8 @@ int main()
 	cout << first << "/" << second << "=";
 	Complex newComp(first / second);
 	cout << newComp << endl;
+	cout << first << "==" << second << " result:" << (first == second);
+	cout << first << "!=" << second << " result:" << (first != second);
 	system("pause");
 	return 0;
 }

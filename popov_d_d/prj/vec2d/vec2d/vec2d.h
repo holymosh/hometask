@@ -14,6 +14,7 @@ public:
 	double y_{ 0 };
 	double abs() const;
 	Vec2d& operator+=(const Vec2d& rhs);
+	Vec2d& operator==(const Vec2d& rhs);
 	Vec2d& operator-=(const Vec2d& rhs);
 	Vec2d& operator+(const Vec2d& rhs);
 	Vec2d& operator-(const Vec2d& rhs);

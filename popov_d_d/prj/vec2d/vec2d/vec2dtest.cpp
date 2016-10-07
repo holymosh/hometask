@@ -32,10 +32,15 @@ int main()
 	Vec2d b(9, 9);
 	a += b;
 	cout << a.x_<<" "<< a.y_<<endl;
-	b -= a;
+	cout << b << "-=" <<a<<"="<<(b-=a);
 	cout << b.x_ << " " << b.y_<<endl;
-	cout << a*b<<endl;
+	cout << a << " == " << b <<":"<< (a == b)<< endl;
+	cout<<a<<"*"<<b<<"="<<(a*b)<<endl;
+	double k(2.0);
+	cout << a << "*" << k << "=" << (a*k) << endl;
+	cout << "a[0]=";
 	cout << a[0]<<endl;
+	cout << "a[1]=" << a[1];
 	//cin >> a;
 	system("pause");
     return 0;

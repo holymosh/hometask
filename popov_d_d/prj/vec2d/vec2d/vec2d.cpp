@@ -9,6 +9,11 @@ Vec2d& Vec2d::operator+=(const Vec2d& rhs)
 	return *this;
 }
 
+Vec2d & Vec2d::operator==(const Vec2d & rhs)
+{
+	return (x_ == rhs.x_ && y_ == rhs.y_);
+}
+
 Vec2d& Vec2d::operator-=(const Vec2d& rhs)
 {
 	x_ -= rhs.x_;

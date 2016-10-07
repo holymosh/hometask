@@ -41,6 +41,7 @@ int main()
 	cout << "a[0]=";
 	cout << a[0]<<endl;
 	cout << "a[1]=" << a[1];
+	cout << a << "<" << b << " result:" << (a < b) << endl;
 	//cin >> a;
 	system("pause");
     return 0;

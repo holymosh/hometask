@@ -9,8 +9,8 @@ std::istream& operator>>(std::istream& istrm, const Rational& rhs) { return rhs.
 int main()
 {
 	using namespace std;
-	Rational a(10, 11);
-	Rational b(1, 11);
+	Rational a(10, 3);
+	Rational b(1, 4);
 	Rational c(a + b);
 	cout << "a=" << a << " b=" << b << endl;
 	cout << "a+b=" << c;
@@ -32,5 +32,6 @@ int main()
 	cout << a << "==" << b << " result" << (a == b) << endl;
 	cout << a << "/" << b << " result" << (a / b) << endl;
 	cout << a << "/=" << b << " result" << (a /= b) << endl;
+	system("pause");
 	return 0;
 }

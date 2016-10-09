@@ -34,6 +34,11 @@ std::ostream& Rational::writeTo(std::ostream& ostrm) const {
 	return ostrm;
 }
 
+std::istream & Rational::readFrom(std::istream & istrm) const
+{
+	return istrm;
+}
+
 Rational::Rational()
 {
 }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include "rational.h"
+#include <sstream>
 
 std::ostream& operator<<(std::ostream& ostrm, const Rational& a) { return a.writeTo(ostrm); }
 std::istream& operator>>(std::istream& istrm, const Rational& rhs) { return rhs.readFrom(istrm); }

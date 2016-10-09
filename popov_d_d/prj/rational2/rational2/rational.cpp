@@ -1,7 +1,7 @@
-#include <cstdint>
-#include <iostream>
-#include <sstream>
 #include "rational.h"
+#include <iostream>
+#include <math.h>
+#include <sstream>
 
 Rational Rational::normalize(const Rational argument)
 {

@@ -9,9 +9,9 @@ Vec2d& Vec2d::operator+=(const Vec2d& rhs)
 	return *this;
 }
 
-Vec2d & Vec2d::operator==(const Vec2d & rhs)
-{
-	return (x_ == rhs.x_ && y_ == rhs.y_);
+bool Vec2d::operator==(const Vec2d &rhs) {
+    return fabs(x_ - rhs.x_) < 1e-6 &&
+            fabs(y_ - rhs.y_) < 1e-6;
 }
 
 bool Vec2d::operator!=(const Vec2d & rhs)
@@ -28,12 +28,14 @@ Vec2d& Vec2d::operator-=(const Vec2d& rhs)
 
 Vec2d& Vec2d::operator+(const Vec2d& rhs)
 {
-	return Vec2d(x_ + rhs.x_, y_ + rhs.y_);
+    Vec2d answer{x_ + rhs.x_, y_ + rhs.y_};
+	return answer;
 }
 
 Vec2d& Vec2d::operator-(const Vec2d& rhs)
 {
-	return Vec2d(x_ - rhs.x_, y_ - rhs.y_);
+    Vec2d answer{x_ - rhs.x_, y_ - rhs.y_};
+	return answer;
 }
 
 bool Vec2d::operator<(const Vec2d& rhs)
@@ -54,7 +56,8 @@ double Vec2d::operator*(const Vec2d& rhs)
 
 Vec2d & Vec2d::operator*(int k)
 {
-	return Vec2d(x_*k, y_*k);
+    Vec2d ans{x_ * k, y_ * k};
+	return ans;
 }
 
 double Vec2d::operator[](const int index) const
@@ -63,7 +66,7 @@ double Vec2d::operator[](const int index) const
 	{
 		return x_;
 	}
-	else if (index)return y_;
+	else return y_;
 }
 
 double Vec2d::abs() const
@@ -83,30 +86,27 @@ Vec2d::Vec2d(const double x, const double y)
 
 Vec2d::~Vec2d(){}
 
-std::istream& Vec2d::readFrom(std::istream& istrm) const
-{
-	char leftBrace(0);
+std::istream &Vec2d::readFrom(std::istream &istrm) {
+    char leftBrace(0);
     double x_(0.0);
-	double x(0.0);
-	double y(0.0);
-	char comma(0);
-	double y_(0.0);
-	char rightBrace(0);
-	istrm >> leftBrace >> x >> comma >> y >> rightBrace;
-	 if (istrm.good()) {
-		if ((Vec2d::leftBrace == leftBrace) && (Vec2d::separator == comma)
-			&& (Vec2d::rightBrace == rightBrace)) {
-			x_ = x;
-			y_ = y;
-			
-		}
-		else {
-			 istrm.setstate(std::ios_base::failbit);
-			
-		}
-		
-	}
-	return istrm;
+    double x(0.0);
+    double y(0.0);
+    char comma(0);
+    double y_(0.0);
+    char rightBrace(0);
+    istrm >> leftBrace >> x >> comma >> y >> rightBrace;
+    if (istrm.good()) {
+        if ((Vec2d::leftBrace == leftBrace) && (Vec2d::separator == comma)
+            && (Vec2d::rightBrace == rightBrace)) {
+            x_ = x;
+            y_ = y;
+
+        }
+        else {
+            istrm.setstate(std::ios_base::failbit);
+
+        }
+
+    }
+    return istrm;
 }
-
-

@@ -1,6 +1,8 @@
 #ifndef HG_VEC2D_H_20160310
 #define HG_VEC2D_H_20160310
 
+#include <iosfwd>
+
 class Vec2d
 {
 public:
@@ -14,7 +16,7 @@ public:
 	double y_{ 0 };
 	double abs() const;
 	Vec2d& operator+=(const Vec2d& rhs);
-	Vec2d& operator==(const Vec2d& rhs);
+	bool operator==(const Vec2d& rhs);
 	bool operator!=(const Vec2d& rhs);
 	Vec2d& operator-=(const Vec2d& rhs);
 	Vec2d& operator+(const Vec2d& rhs);

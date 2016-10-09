@@ -56,7 +56,6 @@ int main()
 	cout << newComp << endl;
 	cout << first << "==" << second << " result:" << (first == second);
 	cout << first << "!=" << second << " result:" << (first != second);
-	system("pause");
 	return 0;
 }
 

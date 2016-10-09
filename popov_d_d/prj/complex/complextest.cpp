@@ -1,5 +1,6 @@
 #include "complex.h"
 #include <iostream>
+#include <sstream>
 
 inline std::ostream& operator<<(std::ostream& ostrm, const Complex& rhs)
 {

@@ -1,6 +1,6 @@
 #ifndef HG_VEC2D_H_20160310
 #define HG_VEC2D_H_20160310
-
+#include <iosfwd>
 struct Complex {
 	Complex() {}
 	explicit Complex(const double real);

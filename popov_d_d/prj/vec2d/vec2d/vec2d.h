@@ -19,8 +19,8 @@ public:
 	bool operator==(const Vec2d& rhs);
 	bool operator!=(const Vec2d& rhs);
 	Vec2d& operator-=(const Vec2d& rhs);
-	Vec2d& operator+(const Vec2d& rhs);
-	Vec2d& operator-(const Vec2d& rhs);
+	Vec2d operator+(const Vec2d& rhs);
+	Vec2d operator-(const Vec2d& rhs);
 	double operator[](const int index) const;
 	double operator*(const Vec2d& rhs);
 	Vec2d& operator*(int k);

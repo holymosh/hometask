@@ -26,13 +26,13 @@ Vec2d& Vec2d::operator-=(const Vec2d& rhs)
 	return *this;
 }
 
-Vec2d& Vec2d::operator+(const Vec2d& rhs)
+Vec2d Vec2d::operator+(const Vec2d& rhs)
 {
     Vec2d answer{x_ + rhs.x_, y_ + rhs.y_};
 	return answer;
 }
 
-Vec2d& Vec2d::operator-(const Vec2d& rhs)
+Vec2d Vec2d::operator-(const Vec2d& rhs)
 {
     Vec2d answer{x_ - rhs.x_, y_ - rhs.y_};
 	return answer;
@@ -45,7 +45,7 @@ bool Vec2d::operator<(const Vec2d& rhs)
 
 std::ostream& Vec2d::writeTo(std::ostream& ostrm)
 {
-	ostrm << "x: " << x_ << " ; y: " << y_;
+	ostrm << "{" << x_ << ";" <<y_ << "}";
 	return ostrm;
 }
 

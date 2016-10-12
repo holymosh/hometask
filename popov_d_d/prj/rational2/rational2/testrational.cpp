@@ -3,7 +3,9 @@
 #include <sstream>
 
 std::ostream& operator<<(std::ostream& ostrm, const Rational& a) { return a.writeTo(ostrm); }
-std::istream& operator>>(std::istream& istrm, const Rational& rhs) { return rhs.readFrom(istrm); }
+std::istream& operator>>(std::istream& istrm,  Rational& rhs) { return rhs.readFrom(istrm); }
+
+
 
 
 int main()
@@ -11,27 +13,27 @@ int main()
 	using namespace std;
 	Rational a(10, 3);
 	Rational b(1, 4);
-	Rational c(a + b);
-	cout << "a=" << a << " b=" << b << endl;
-	cout << "a+b=" << c;
+	cout << a << "+" << b << "="<<(a + b) << endl;
+	cout << a << "-" << b << "=" << (a - b) << endl;
+	cout << a << "+=" << b << " result: ";
 	a += b;
-	cout << "a+=b =" << a;
-	cout << "a=" << a << " b=" << b << endl;
-	c = a - b;
-	cout << "a-b=" << c;
+	cout << a << endl;
+	cout << a << "-=" << b << " result: ";
 	a -= b;
-	cout << "a-=b =" << a;
-	c = a*b;
-	cout << "a=" << a << " b=" << b << endl;
-	cout << "a*b=" << c;
-	a *= b;
-	cout << "a*=b =" << a;
-	cout << a << "<" << b << " result" << (a < b)<<endl;
-	cout << a << ">" << b << " result" << (a > b) << endl;
-	cout << a << "!=" << b << " result" << (a != b) << endl;
-	cout << a << "==" << b << " result" << (a == b) << endl;
+	cout << a << endl;
+	cout << a << "*" << b << "=" << (a * b) << endl;
+	Rational c(1, 4);
+	Rational d(1, 3);
+	cout << c << "*=" << d << " result: ";
+	c *= d;
+	cout << c << endl;
+	cout << a << "<" << b << " result " << (a < b)<<endl;
+	cout << a << ">" << b << " result " << (a > b) << endl;
+	cout << a << "!=" << b << " result " << (a != b) << endl;
+	cout << a << "==" << b << " result " << (a == b) << endl;
+	cout << a << "==" << a << " result " << (a == a) << endl;
 	cout << a << "/" << b << " result" << (a / b) << endl;
-	cout << a << "/=" << b << " result" << (a /= b) << endl;
-	system("pause");
+	int k(0);
+	cin >> k;
 	return 0;
 }

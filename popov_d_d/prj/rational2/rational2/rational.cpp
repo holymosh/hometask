@@ -3,7 +3,7 @@
 #include <math.h>
 #include <sstream>
 
-Rational Rational::normalize(const Rational argument)
+Rational Rational::normalize( Rational& argument)
 {
 	int num(argument.num_);
 	int denum(argument.denum_);
@@ -30,12 +30,28 @@ Rational Rational::operator- (const Rational& rhs)
 }
 
 std::ostream& Rational::writeTo(std::ostream& ostrm) const {
-	ostrm << num_ << "/" << denum_ << "\n";
+	ostrm << num_ << "/" << denum_ ;
 	return ostrm;
 }
 
-std::istream & Rational::readFrom(std::istream & istrm) const
+std::istream& Rational::readFrom(std::istream & istrm) 
 {
+	int num(0);
+	int denum(0);
+	char slash(0);
+	istrm >> num >> slash >> denum;
+	if (istrm.good())
+	{
+		if (slash == '/' && denum)
+		{
+			num_ = num;
+			denum_ = denum;
+		}
+		else {
+			istrm.setstate(std::ios_base::failbit);
+		}
+
+	}
 	return istrm;
 }
 

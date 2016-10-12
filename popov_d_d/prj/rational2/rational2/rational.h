@@ -24,12 +24,13 @@ public:
 	Rational operator*(const Rational& rhs);
 	Rational operator- (const Rational& rhs);
 	std::ostream& writeTo(std::ostream& ostrm) const;
-	std::istream& readFrom(std::istream& istrm) const;
-
+	std::istream& readFrom(std::istream& istrm) ;
+	
 private:
+	
+	Rational normalize( Rational& argument);
 	int num_{ 0 };
 	int denum_{ 1 };
-	Rational normalize(const Rational argument);
 
 };
 

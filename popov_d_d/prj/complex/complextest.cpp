@@ -39,6 +39,9 @@ int main()
 	testParse("{8.9,9");
 	Complex first(8, 1);
 	Complex second(7, 3);
+	cout << first << "+" << second <<"="<< (first + second)<<endl;
+	cout << first << "-" << second <<"="<< (first - second)<<endl;
+	cout << first << "*" << second << (first * second) << "=" << endl;
 	cout << first << "-=" << second;
 	first -= second;
 	cout << "=" << first << endl;
@@ -55,8 +58,10 @@ int main()
 	cout << first << "/" << second << "=";
 	Complex newComp(first / second);
 	cout << newComp << endl;
-	cout << first << "==" << second << " result:" << (first == second);
+	cout << first << "==" << second << " result:" << (first == second)<<endl;
 	cout << first << "!=" << second << " result:" << (first != second);
+	int k(0);
+	cin >> k;
 	return 0;
 }
 

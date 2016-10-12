@@ -23,6 +23,26 @@
 	 return *this;
  }
 
+ Complex  Complex::operator+(const Complex & rhs)
+ {
+	 return Complex(rhs.re+re, rhs.im+im);
+ }
+
+ Complex Complex::operator-(const Complex & rhs)
+ {
+	 return Complex(re - rhs.re,im - rhs.im);
+ }
+
+ Complex Complex::operator*(const Complex & rhs)
+ {
+
+	 double newRe(re*rhs.re - im*rhs.im);
+	 double newIm(re*rhs.im + im*rhs.re);
+	 re = newRe;
+	 im = newIm;
+	 return Complex(newRe , newIm);
+ }
+
  Complex& Complex::operator-=(const Complex& rhs)
  {
 	 re -= rhs.re;

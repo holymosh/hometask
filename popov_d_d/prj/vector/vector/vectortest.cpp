@@ -39,7 +39,10 @@ int main() {
 	cout << newVector << endl;
 	cout << endl;
 	cout << "increase size to 10 " << endl;
-	vector.resize(10);
+	newVector.resize(10);
+	newVector.add(7.99);
+	newVector.add(8.99);
+	newVector.add(10.87);
 	cout << newVector << endl;
 	int k;
 	cin >> k;

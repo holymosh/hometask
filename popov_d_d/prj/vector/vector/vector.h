@@ -20,7 +20,7 @@ public:
 	std::ostream& writeTo(std::ostream& ostrm);
 
 private:
-	ptrdiff_t size_{ 0 };
+	ptrdiff_t count_{ 0 };
 	double* pointer_{ nullptr };
 	ptrdiff_t capacity_{ 0 };
 

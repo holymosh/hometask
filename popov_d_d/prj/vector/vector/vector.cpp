@@ -3,13 +3,13 @@
 Vector::Vector()
 {
 	pointer_ = new double[0];
-	size_ = 0;
+	count_ = 0;
 }
 
 Vector::Vector(ptrdiff_t capacity)
 {
 	pointer_ = new double[capacity];
-	size_=0;
+	count_=0;
 	capacity_ = capacity;
 }
 
@@ -26,9 +26,9 @@ Vector::~Vector()
 Vector &Vector::operator=(const Vector &rhs) {
 	if (this != &rhs) {
 		delete[] pointer_;
-		size_ = rhs.size_;
-		pointer_ = new double[size_];
-		for (int i = 0; i < size_; i++) {
+		count_ = rhs.count_;
+		pointer_ = new double[rhs.capacity_];
+		for (int i = 0; i < count_; i++) {
 			this->operator[](i) = rhs[i];
 		}
 	}
@@ -36,7 +36,7 @@ Vector &Vector::operator=(const Vector &rhs) {
 }
 
 const double &Vector::operator[](const ptrdiff_t position) const {
-	if (position >size_ ) {
+	if (position >count_ ) {
 		using namespace std;
 		cout << "out of range";
 		//throw std::out_of_range("Out of range in vector");
@@ -47,7 +47,7 @@ const double &Vector::operator[](const ptrdiff_t position) const {
 
 double & Vector::operator[](const ptrdiff_t position)
 {
-	if (position >size_)
+	if (position >count_)
 	{
 		using namespace std;
 		cout << "out of range exception"<<endl;
@@ -58,34 +58,47 @@ double & Vector::operator[](const ptrdiff_t position)
 
 ptrdiff_t Vector::getSize() const
 {
-	return size_;
+	return count_;
 }
 
 void Vector::resize(const ptrdiff_t size)
 {
-	if (size > size_) 
+	if (size > count_)
 	{
-		Vector tmp{ *this };
-		pointer_ = new double[size];
-		*this = tmp;
-		this->size_ = size_;
+		double* new_Pointer = new double[size];
+		for (ptrdiff_t i (0); i < count_; i++)
+		{
+			new_Pointer[i] = pointer_[i];
+		}
+		delete[] pointer_;
+		pointer_ = new_Pointer;
+		for (ptrdiff_t i(count_); i < size; ++i)
+		{
+			pointer_[i] = 0.00;
+		}
+		capacity_ = size;
+		
 	}
-	size_ = size;
+	else
+	{
+		count_ = size;
+	}
+	
 }
 
 void Vector::add(double value)
 {
-	if (size_ < capacity_)
+	if (count_ < capacity_)
 	{
-		this->operator[](size_) = value;
-		size_ += 1;
+		this->operator[](count_) = value;
+		count_ += 1;
 	}
 	
 }
 
 std::ostream & Vector::writeTo(std::ostream & ostrm)
 {
-	for (ptrdiff_t i = 0; i < size_; ++i) 
+	for (ptrdiff_t i = 0; i < count_; ++i) 
 	{
 		ostrm << *(pointer_+i) << " ";
 	}

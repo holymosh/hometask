@@ -9,9 +9,10 @@ int main() {
 
 	cout << "create vector with size =10" << endl;
 	Vector vector(10);
-
-	for (int i = 0; i < 10; ++i) {
-		vector[i] = i;
+	double val(0.00);
+	for (ptrdiff_t i(0); i < 10; ++i) {
+		vector[i] = val;
+		val += 1.00;
 	}
 	cout << vector << endl << endl;
 	double a = vector[1];
@@ -38,7 +39,7 @@ int main() {
 	cout << newVector << endl;
 	cout << endl;
 	cout << "increase size to 10 " << endl;
-	newVector.resize(14);
+	//newVector.resize(14);
 	cout << newVector << endl;
 	int k;
 	cin >> k;

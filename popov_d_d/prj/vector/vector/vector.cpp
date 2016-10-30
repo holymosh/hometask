@@ -6,10 +6,11 @@ Vector::Vector()
 	size_ = 0;
 }
 
-Vector::Vector(ptrdiff_t size)
+Vector::Vector(ptrdiff_t capacity)
 {
-	pointer_ = new double[size];
-	size_ = size;
+	pointer_ = new double[capacity];
+	size_=0;
+	capacity_ = capacity;
 }
 
 Vector::Vector(const Vector & vector)
@@ -25,35 +26,43 @@ Vector::~Vector()
 Vector & Vector::operator=(const Vector & rhs)
 {
 	if (this != &rhs) {
-		delete[] pointer_;
-		size_ = rhs.size_;
-		pointer_ = new double[size_];
-		for (int i = 0; i < size_; i++) {
-			this->operator[](i) = rhs[i];
+		if (capacity_ > rhs.getSize())
+		{
+			ptrdiff_t newSize = rhs.getSize();
+			for (ptrdiff_t i = size_; i < newSize; i++)
+			{
+				*(pointer_ + i) = rhs[i];
+			}
+			size_ = newSize;
 		}
-	}
+		else
+		{
+			capacity_=rhs.capacity_;
+			delete[] pointer_;
+			pointer_ = rhs.pointer_;
+		}
+		}
+	
 	return *this;
 }
 
+const double &Vector::operator[](const ptrdiff_t rhs) const {
+	if (rhs >= capacity_) {
+		throw std::out_of_range("Out of range in vector");
+	}
+	return *(pointer_ + rhs);
+}
+
+
 double & Vector::operator[](const ptrdiff_t position)
 {
-	if (position >= size_) 
+	if (position >= capacity_) 
 	{
 		using namespace std;
 		cout << "out of range exception"<<endl;
-		throw std::out_of_range("Out of range in vector");
+		//throw std::out_of_range("Out of range in vector");
 	}
-	return *(pointer_ + position);
-}
-
-const double & Vector::operator[](const ptrdiff_t position) const
-{
-	if (position >= size_)
-	{
-		using namespace std;
-		cout << "out of range exception";
-		throw std::out_of_range("Out of range in vector");
-	}
+	++size_;
 	return *(pointer_ + position);
 }
 
@@ -76,9 +85,9 @@ void Vector::resize(const ptrdiff_t size)
 
 std::ostream & Vector::writeTo(std::ostream & ostrm)
 {
-	for (int i = 0; i < size_; ++i) 
+	for (ptrdiff_t i = 0; i < size_; ++i) 
 	{
-		ostrm << (*this)[i] << " ";
+		ostrm << *(pointer_+i) << " ";
 	}
 	using namespace std;
 	cout << endl;

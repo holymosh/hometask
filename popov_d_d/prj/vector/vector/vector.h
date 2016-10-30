@@ -12,9 +12,8 @@ public:
 	Vector(const Vector& vector);
 	~Vector();
 	Vector& operator= (const Vector& rhs);
-
+	const double &Vector::operator[](const ptrdiff_t idx) const;
 	double& operator[](const ptrdiff_t position);
-	const double& operator[](const ptrdiff_t position) const;
 	ptrdiff_t getSize() const;
 	void resize(const ptrdiff_t size);
 
@@ -23,6 +22,7 @@ public:
 private:
 	ptrdiff_t size_{ 0 };
 	double* pointer_{ nullptr };
+	ptrdiff_t capacity_{ 0 };
 
 };
 

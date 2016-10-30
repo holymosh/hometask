@@ -11,7 +11,7 @@ int main() {
 	Vector vector(10);
 	double val(0.00);
 	for (ptrdiff_t i(0); i < 10; ++i) {
-		vector[i] = val;
+		vector.add(val);
 		val += 1.00;
 	}
 	cout << vector << endl << endl;
@@ -39,7 +39,7 @@ int main() {
 	cout << newVector << endl;
 	cout << endl;
 	cout << "increase size to 10 " << endl;
-	//newVector.resize(14);
+	vector.resize(10);
 	cout << newVector << endl;
 	int k;
 	cin >> k;

@@ -16,7 +16,7 @@ public:
 	double& operator[](const ptrdiff_t position);
 	ptrdiff_t getSize() const;
 	void resize(const ptrdiff_t size);
-
+	void add(double value);
 	std::ostream& writeTo(std::ostream& ostrm);
 
 private:

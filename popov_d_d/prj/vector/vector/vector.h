@@ -7,11 +7,11 @@
 class Vector {
 
 public:
-	Vector();
+	Vector() = default;
 	Vector(ptrdiff_t size);
 	Vector(const Vector& vector);
 	~Vector();
-	Vector& operator= (const Vector& rhs);
+	Vector& operator=(const Vector& rhs);
 	const double &Vector::operator[](const ptrdiff_t idx) const;
 	double& operator[](const ptrdiff_t position);
 	ptrdiff_t getSize() const;

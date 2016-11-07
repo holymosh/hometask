@@ -1,10 +1,5 @@
 #include "vector.h"
 #include <iostream>
-Vector::Vector()
-{
-	pointer_ = new double[0];
-	count_ = 0;
-}
 
 Vector::Vector(ptrdiff_t capacity)
 {
@@ -29,7 +24,7 @@ Vector &Vector::operator=(const Vector &rhs) {
 		count_ = rhs.count_;
 		pointer_ = new double[rhs.capacity_];
 		for (int i = 0; i < count_; i++) {
-			this->operator[](i) = rhs[i];
+			operator[](i) = rhs[i];
 		}
 	}
 	return *this;
@@ -90,7 +85,7 @@ void Vector::add(double value)
 {
 	if (count_ < capacity_)
 	{
-		this->operator[](count_) = value;
+		operator[](count_) = value;
 		count_ += 1;
 	}
 	

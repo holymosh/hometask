@@ -13,5 +13,7 @@ int main()
 	cout << stack.pop();
 	cout << " removed \n";
 	cout<<"top is " << stack.top() << '\n';
+	LstStack newStack(stack);
+	cout << "new stack created by  old stack ; top - " << newStack.top();
 	return 0;
 }

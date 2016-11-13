@@ -1,11 +1,9 @@
 #include "arrstack.h"
 
 
-Stack::Stack(ptrdiff_t size)
+Stack::Stack(ptrdiff_t size) : size_(size),top_(0)
 {
 	stackPointer_ = new int[size];
-	size_ = size;
-	top_ = 0;
 }
 
 Stack::Stack(Stack & stack)
@@ -38,12 +36,12 @@ void Stack::push(const int element)
 	}
 }
 
-int Stack::pop()
+int& Stack::pop()
 {
 	if (top_ > 0)
 	{
 		--top_;
-		return *(stackPointer_ + top_ + 1);
+		return *(stackPointer_ + top_ );
 	}
 	else
 	{
@@ -55,7 +53,7 @@ int Stack::peek(ptrdiff_t number)
 {
 	if (number <= top_)
 	{
-		return *(stackPointer_ + top_ - number);
+		return *(stackPointer_ + number);
 	}
 	else
 	{

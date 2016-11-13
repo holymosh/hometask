@@ -10,7 +10,7 @@ public:
 	Stack(Stack& stack);
 	~Stack();
 	void push(const int element);
-	int pop();
+	int& pop();
 	int peek(ptrdiff_t number);
 	int getTop() const;
 	std::ostream& writeTo(std::ostream& ostrm);

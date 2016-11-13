@@ -7,8 +7,11 @@ public:
 	LstStack(LstStack& obj);
 	~LstStack();
 	double pop();
+	bool isEmpty();
 	void push(const double value);
-	double getTop() const;
+	double top();
+	void remove();
+	void deleteAll();
 private:
 
 	struct Node;
@@ -16,7 +19,13 @@ private:
 	{
 		Node* pNext_{ nullptr };
 		double data_{ 0.0 };
+		Node() = default;
+		Node(double data, Node* p)
+			:data_{ data }, 
+			pNext_{ p } 
+		{}
 	};
+
 	Node* head_{ nullptr };
 
 };

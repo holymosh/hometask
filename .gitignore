@@ -7,3 +7,5 @@ popov_d_d/prj/vec2d/vec2d/targetver.h
 popov_d_d/prj/vec2d/vec2d/stdafx.cpp
 popov_d_d/prj/vec2d/vec2d/ReadMe.txt
 popov_d_d/prj/holymosh_stealer
+popov_d_d/prj/lststack/.idea/lststack.iml
+*.xml

@@ -1,6 +1,8 @@
 #include "vector.h"
 #include <iostream>
 
+using namespace std;
+
 Vector::Vector(ptrdiff_t capacity)
 {
 	pointer_ = new double[capacity];
@@ -32,9 +34,8 @@ Vector &Vector::operator=(const Vector &rhs) {
 
 const double &Vector::operator[](const ptrdiff_t position) const {
 	if (position >count_ ) {
-		using namespace std;
 		cout << "out of range";
-		//throw std::out_of_range("Out of range in vector");
+		throw std::out_of_range("Out of range in vector");
 	}
 	return *(pointer_ + position);
 }
@@ -44,9 +45,8 @@ double & Vector::operator[](const ptrdiff_t position)
 {
 	if (position >count_)
 	{
-		using namespace std;
 		cout << "out of range exception"<<endl;
-		//throw std::out_of_range("Out of range in vector");
+		throw std::out_of_range("Out of range in vector");
 	}
 	return *(pointer_ + position);
 }

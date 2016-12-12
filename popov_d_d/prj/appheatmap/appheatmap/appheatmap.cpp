@@ -1,40 +1,50 @@
-// appheatmap.cpp: определяет точку входа для консольного приложения.
-//
 #include <iostream>
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
+#include "valuesBuilder.h"
 
 using namespace std;
 using namespace cv;
 int main()
 {
 	int width(400);
+	Mat inputMat(20, 20, DataType<int>::type);
+	for (int i = 0; i < inputMat.rows; ++i)
+	{
+		for (int j = 0; j < inputMat.cols; ++j)
+		{
+			if (i%2)
+			{
+				inputMat.at<int>(i, j) = -j;
+			}
+			else
+			{
+				inputMat.at<int>(i, j) = j;
+			}
+		}
+	}
+	for (int i = 0; i < inputMat.rows; ++i)
+	{
+		for (int j = 0; j < inputMat.cols; ++j)
+		{
+			cout << inputMat.at<int>(i, j)<< " ";
+		}
+		cout << endl;
+
+	}
+	
+	ValuesBuilder builder(maptypes::first);
+	Mat_<Scalar> matfrombuilder = builder.getValuesMatrix(inputMat, maptypes::first);
 	
 	Mat img(Mat::zeros(width, width, CV_8UC4));
-	Mat mt(5,4,DataType<int>::type);
-	for (ptrdiff_t i(0); i < mt.rows; ++i)
-	{
-		for (ptrdiff_t j = 0; j < mt.cols; ++j)
-		{
-			mt.at<int>(i, j) = j+100;
-		}
-	}
-	for (ptrdiff_t i(0); i < mt.rows; ++i)
-	{
-		for (ptrdiff_t j = 0; j < mt.cols; ++j)
-		{
-			cout << mt.at<int>(i, j) << " ";
-		}
-		cout << '\n';
-	}
-	int w(width/400);
+	int w(width/20);
 	int h(w);
-	
-	for (int i(0); i < 400; i+=w)
+	for (int i(0) ; i < 400 ; i+=w )
 	{
 		for (int j = 0; j < 400; j+=h)
 		{
-			rectangle(img, Rect(i, j, w, h), Scalar(0,i/1.3+30,j/1.3+30) , CV_FILLED);
+			//Scalar_<double> scal = matScalar.at<Scalar>(i, j);
+			rectangle(img, Rect(i, j, w, h),matfrombuilder.at<Scalar>(2,9), CV_FILLED);
 		}
 	}
 	imshow("heatmap", img);

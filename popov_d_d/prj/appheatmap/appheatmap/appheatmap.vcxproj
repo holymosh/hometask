@@ -159,7 +159,6 @@
   <ItemGroup>
     <ClCompile Include="appheatmap.cpp" />
     <ClCompile Include="heatmapBuilder.cpp" />
-    <ClCompile Include="ScalarMatrix.cpp" />
     <ClCompile Include="valuesBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>

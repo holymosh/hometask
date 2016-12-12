@@ -164,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="heatmapBuilder.h" />
+    <ClInclude Include="heatmaptypes.h" />
     <ClInclude Include="valuesBuilder.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -9,3 +9,15 @@ popov_d_d/prj/vec2d/vec2d/ReadMe.txt
 popov_d_d/prj/holymosh_stealer
 popov_d_d/prj/lststack/.idea/lststack.iml
 *.xml
+popov_d_d/prj/googlePasswordsDecrypt/googlePasswordsDecrypt/App.config
+popov_d_d/prj/googlePasswordsDecrypt/googlePasswordsDecrypt/bin/Debug/googlePasswordsDecrypt.exe.config
+popov_d_d/prj/googlePasswordsDecrypt/googlePasswordsDecrypt/bin/Debug/googlePasswordsDecrypt.vshost.exe.config
+popov_d_d/prj/googlePasswordsDecrypt/googlePasswordsDecrypt/bin/Debug/googlePasswordsDecrypt.vshost.exe.manifest
+popov_d_d/prj/googlePasswordsDecrypt/googlePasswordsDecrypt/googlePasswordsDecrypt.csproj
+popov_d_d/prj/googlePasswordsDecrypt/googlePasswordsDecrypt/obj/Debug/googlePasswordsDecrypt.csproj.FileListAbsolute.txt
+popov_d_d/prj/googlePasswordsDecrypt/googlePasswordsDecrypt/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+*.cs
+*.nupkg
+popov_d_d/prj/googlePasswordsDecrypt/packages/Newtonsoft.Json.8.0.3/tools/install.ps1
+*.targets
+popov_d_d/prj/googlePasswordsDecrypt/googlePasswordsDecrypt/packages.config

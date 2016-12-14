@@ -4,7 +4,7 @@
 
 using namespace cv;
 
-Mat HeatMapBuilder::getUsualHeatMap(Mat_<Scalar>& scalars)
+Mat HeatMapBuilder::createHeatMap(Mat_<Scalar>& scalars)
 {
 	int width(scalars.rows);
 	int valueWidth(1);

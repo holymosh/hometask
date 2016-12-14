@@ -6,6 +6,6 @@ class HeatMapBuilder
 {
 public:
 	HeatMapBuilder()= default;
-	cv::Mat getUsualHeatMap(cv::Mat_<cv::Scalar>& scalars);
+	cv::Mat createHeatMap(cv::Mat_<cv::Scalar>& scalars);
 };
 #endif

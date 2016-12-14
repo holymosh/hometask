@@ -9,7 +9,6 @@ using namespace std;
 using namespace cv;
 int main()
 {
-	//srand(time(time_t(0)));
 	Mat inputMat(500, 500, DataType<int>::type);
 	srand(time(0));
 	int one(1);
@@ -30,18 +29,9 @@ int main()
 		}
 		one = -one;
 	}
-	for (int i = 0; i < inputMat.rows; ++i)
-	{
-		for (int j = 0; j < inputMat.cols; ++j)
-		{
-			//cout << inputMat.at<int>(i, j)<< " ";
-		}
-		cout << endl;
-
-	}
 	
 	ValuesBuilder builder(maptypes::first);
-	Mat_<Scalar> needed_mat = builder.getValuesMatrix(inputMat, maptypes::first);
+	Mat_<Scalar> needed_mat = builder.getScalarMat(inputMat, maptypes::first);
 	HeatMapBuilder heat_map_builder;
 	Mat heatMap = heat_map_builder.getUsualHeatMap(needed_mat);
 	imshow("heatMap", heatMap);

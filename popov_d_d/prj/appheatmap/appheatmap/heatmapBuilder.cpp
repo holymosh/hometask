@@ -3,10 +3,6 @@
 #include <opencv2/highgui.hpp>
 
 using namespace cv;
-HeatMapBuilder::HeatMapBuilder(const HeatMapBuilder& other)
-{
-
-}
 
 Mat HeatMapBuilder::getUsualHeatMap(Mat_<Scalar>& scalars)
 {

@@ -19,16 +19,8 @@ ValuesBuilder::ValuesBuilder(const ValuesBuilder& other):maptype(other.maptype)
 Mat_<Scalar> ValuesBuilder::getValuesMatrix(const Mat& values, maptypes::maptype mtype)
 {
 	Mat_<Scalar> scalarMat(values.rows, values.cols, DataType<Scalar>::type);
-	switch (mtype)
-	{
-	case maptypes::first:
 		 scalarMat = getFirstScalarMatType(values);
 		 return scalarMat;
-	case maptypes::second: 
-		scalarMat = getSecondScalarMatType(values);
-		return scalarMat;
-	default: break;
-	}
 }
 
 Mat_<Scalar> ValuesBuilder::getFirstScalarMatType(const Mat& values)
@@ -42,11 +34,6 @@ Mat_<Scalar> ValuesBuilder::getFirstScalarMatType(const Mat& values)
 		}
 	}
 	return neededMat.clone();
-}
-
-Mat& ValuesBuilder::getSecondScalarMatType(const Mat& values)
-{
-	return Mat();
 }
 
 Scalar ValuesBuilder::getScalarForFirstType(int value)

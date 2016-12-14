@@ -9,13 +9,15 @@ using namespace std;
 using namespace cv;
 int main()
 {
+	//srand(time(time_t(0)));
 	Mat inputMat(500, 500, DataType<int>::type);
 	srand(time(0));
+	int one(1);
 	for (int i = 0,i1(0); i < inputMat.rows; ++i,i1++)
 	{
 		for (int j = 0,j1(0); j < inputMat.cols; ++j,j1++)
 		{
-			inputMat.at<int>(i, j) = rand()%2;
+			inputMat.at<int>(i, j) = rand()%20;
 			if (j1==20)
 			{
 				j1 = 0;
@@ -24,7 +26,9 @@ int main()
 			{
 				i1 = 0;
 			}
+			one = -one;
 		}
+		one = -one;
 	}
 	for (int i = 0; i < inputMat.rows; ++i)
 	{

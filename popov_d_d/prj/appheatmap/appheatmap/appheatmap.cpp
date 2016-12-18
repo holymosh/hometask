@@ -15,16 +15,16 @@ int main()
 	{
 		for (int j = 0,j1(0); j < inputMat.cols; ++j,j1++)
 		{
-			inputMat.at<int>(i, j) = rand()%2*one;
+			inputMat.at<int>(i, j) = sin(j1)*20*one;
 			if (j1==20)
 			{
-				j1 = 0;
+				j1 = -20;
 			}
 			if (i1==20)
 			{
-				i1 = 0;
+				i1 = -20;
 			}
-			one = -one;
+			//one = -one;
 		}
 		one = -one;
 	}

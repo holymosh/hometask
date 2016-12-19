@@ -1,5 +1,6 @@
 #include "valuesBuilder.h"
 #include <opencv2/highgui.hpp>
+#include <iostream>
 
 using namespace cv;
 
@@ -10,14 +11,23 @@ ValuesBuilder::~ValuesBuilder()
 
 
 
-Mat_<Scalar> ValuesBuilder::getScalarMat(const Mat& values)
+Mat_<Scalar> ValuesBuilder::getScalarMat(Mat_<int>& values)
 {
+	values = makeValuesValidIfNeeded(values);
+	/*for (int i = 0; i < values.rows; ++i)
+	{
+		for (int j = 0; j < values.cols; ++j)
+		{
+			std::cout << values.at<int>(i,j)<<" ";
+		}
+		std::cout << std::endl;
+	}*/
 	Mat_<Scalar> scalarMat(values.rows, values.cols, DataType<Scalar>::type);
-		 scalarMat = createScalarMat(values);
-		 return scalarMat;
+	 scalarMat = createScalarMat(values);
+	 return scalarMat;
 }
 
-void ValuesBuilder::checkValues(Mat_<int>& values)
+Mat_<int>& ValuesBuilder::makeValuesValidIfNeeded(Mat_<int>& values)
 {
 	int min(values.at<int>(0,0));
 	int max(min);
@@ -36,7 +46,21 @@ void ValuesBuilder::checkValues(Mat_<int>& values)
 			}
 		}
 	}
-	int alterValue((max-min)/40);
+	std::cout << "min : "<<min<<" max : "<<max<<std::endl;
+	if (min<-20 || max>20)
+	{
+		for (int i = 0; i < values.rows; ++i)
+		{
+			for (int j = 0; j < values.cols; ++j)
+			{
+				int currentValue(values.at<int>(i, j));
+				double part =(double) (currentValue - min) / (max - min);
+				int validValue(-20 + part * 40);
+				values.at<int>(i, j) = validValue;
+			}
+		}
+	}
+	return values;
 }
 
 Mat_<Scalar> ValuesBuilder::createScalarMat(const Mat& values)

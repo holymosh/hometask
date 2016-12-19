@@ -6,12 +6,11 @@ class ValuesBuilder
 {
 public:
 	ValuesBuilder()= default;
-	
 	~ValuesBuilder();
 	ValuesBuilder(const ValuesBuilder& other);
-	Mat_<Scalar> getScalarMat(const Mat& values);
+	Mat_<Scalar> getScalarMat(Mat_<int>& values);
 private:
-	void checkValues(Mat_<int>& values);
+	Mat_<int>& makeValuesValidIfNeeded(Mat_<int>& values);
 	Mat_<Scalar> createScalarMat(const Mat& values);
 	Scalar createValue(int value);
 

@@ -8,10 +8,10 @@ using namespace std;
 using namespace cv;
 int main()
 {
-	Mat inputMat(500, 500, DataType<int>::type);
+	Mat_<int> inputMat(500, 500, DataType<int>::type);
 	srand(time(0));
 	int one(1);
-	for (int i = 0,i1(0); i < inputMat.rows; ++i,i1++)
+	/*for (int i = 0,i1(0); i < inputMat.rows; ++i,i1++)
 	{
 		for (int j = 0,j1(20); j < inputMat.cols; j+=2,j1--)
 		{
@@ -41,7 +41,20 @@ int main()
 		}
 		one = -one;
 	}
-	
+	*/
+	for (int i = 0; i < inputMat.rows; ++i)
+	{
+		for (int j = 0; j < inputMat.cols; j+=2)
+		{
+			inputMat.at<int>(i, j) = j;
+		}
+		for (int j = 1; j < inputMat.cols; j += 2)
+		{
+			inputMat.at<int>(i, j) = j-i;
+		}
+		one = -one;
+	}
+
 	ValuesBuilder builder;
 	Mat_<Scalar> needed_mat = builder.getScalarMat(inputMat);
 	HeatMapBuilder heat_map_builder;

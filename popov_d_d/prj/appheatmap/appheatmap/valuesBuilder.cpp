@@ -3,24 +3,40 @@
 
 using namespace cv;
 
-ValuesBuilder::ValuesBuilder(maptypes::maptype type):maptype(type)
-{
-}
 
 ValuesBuilder::~ValuesBuilder()
 {
 }
 
-ValuesBuilder::ValuesBuilder(const ValuesBuilder& other):maptype(other.maptype)
-{
-	
-}
 
-Mat_<Scalar> ValuesBuilder::getScalarMat(const Mat& values, maptypes::maptype mtype)
+
+Mat_<Scalar> ValuesBuilder::getScalarMat(const Mat& values)
 {
 	Mat_<Scalar> scalarMat(values.rows, values.cols, DataType<Scalar>::type);
 		 scalarMat = createScalarMat(values);
 		 return scalarMat;
+}
+
+void ValuesBuilder::checkValues(Mat_<int>& values)
+{
+	int min(values.at<int>(0,0));
+	int max(min);
+	for (int i(0); i < values.rows; ++i)
+	{
+		for (int j(0); j < values.cols; ++j)
+		{
+			int currentValue(values.at<int>(i, j));
+			if (currentValue>max)
+			{
+				max = currentValue;;
+			}
+			if (currentValue<min)
+			{
+				min = currentValue;
+			}
+		}
+	}
+	int alterValue((max-min)/40);
 }
 
 Mat_<Scalar> ValuesBuilder::createScalarMat(const Mat& values)

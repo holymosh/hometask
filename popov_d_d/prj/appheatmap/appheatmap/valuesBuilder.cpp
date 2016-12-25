@@ -27,42 +27,6 @@ Mat ValuesBuilder::getScalarMat(Mat& values)
 	 return scalarMat;
 }
 
-Mat_<int>& ValuesBuilder::makeValuesValidIfNeeded(Mat_<int>& values)
-{
-	int min(values.at<int>(0,0));
-	int max(min);
-	for (int i(0); i < values.rows; ++i)
-	{
-		for (int j(0); j < values.cols; ++j)
-		{
-			int currentValue(values.at<int>(i, j));
-			if (currentValue>max)
-			{
-				max = currentValue;;
-			}
-			if (currentValue<min)
-			{
-				min = currentValue;
-			}
-		}
-	}
-	std::cout << "min : "<<min<<" max : "<<max<<std::endl;
-	if (min<-20 || max>20)
-	{
-		for (int i = 0; i < values.rows; ++i)
-		{
-			for (int j = 0; j < values.cols; ++j)
-			{
-				int currentValue(values.at<int>(i, j));
-				double part =(double) (currentValue - min) / (max - min);
-				int validValue(-20 + part * 40);
-				values.at<int>(i, j) = validValue;
-			}
-		}
-	}
-	return values;
-}
-
 Mat_<Scalar> ValuesBuilder::createScalarMat( Mat& values)
 {
 	int min(values.at<int>(0, 0));

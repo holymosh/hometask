@@ -7,10 +7,10 @@ PaletteManager::~PaletteManager()
 {
 }
 
-void PaletteManager::openPaletteFile()
+void PaletteManager::savePalette(char*  path)
 {
 	ofstream ofstream;
-	ofstream.open("palette.txt");
+	ofstream.open(path);
 	ofstream.clear();
 	for (int i = 0; i < rgb_vector_.size()-1; ++i)
 	{
@@ -57,4 +57,9 @@ void PaletteManager::readPaletteFile(char*  path)
 	{
 		std::cout << rgb_vector_.at(i).value << " " << rgb_vector_.at(i).red << " " << rgb_vector_.at(i).green << " " << rgb_vector_.at(i).blue << " " << endl;
 	}
+}
+
+void PaletteManager::addColor(int value, double red, double green, double blue)
+{
+	rgb_vector_.push_back(rgbValue(red, green, blue, value));
 }

@@ -10,7 +10,6 @@ public:
 	~ValuesBuilder();
 	Mat getScalarMat(Mat& values);
 private:
-	Mat_<int>& makeValuesValidIfNeeded(Mat_<int>& values);
 	Mat_<Scalar> createScalarMat(Mat& values);
 	Scalar createValue(int value);
 	Scalar createValuetest(int value, int min, int max);

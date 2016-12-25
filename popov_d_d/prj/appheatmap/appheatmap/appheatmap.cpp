@@ -31,7 +31,7 @@ int main()
 	PaletteManager manager;
 	char chr[]{"palette.txt"};
 	manager.readPaletteFile(chr);
-	manager.openPaletteFile();
+	manager.savePalette(chr);
 
     return 0;
 }

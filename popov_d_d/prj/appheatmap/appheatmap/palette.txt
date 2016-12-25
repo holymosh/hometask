@@ -1,2 +1,2 @@
-value: 36 red: 20 green: 101 blue: 111 
-value: 66 red: 31 green: 104 blue: 112 
+value: 37 red: 21 green: 102 blue: 112 
+value: 67 red: 32 green: 105 blue: 113 

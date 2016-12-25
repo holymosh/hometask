@@ -24,8 +24,9 @@ public:
 
 	PaletteManager()=default;
 	~PaletteManager();
-	void openPaletteFile();
+	void savePalette(char* path);
 	void readPaletteFile(char* path);
+	void addColor(int value , double red, double green , double blue);
 
 private:
 	std::vector<rgbValue> rgb_vector_{};

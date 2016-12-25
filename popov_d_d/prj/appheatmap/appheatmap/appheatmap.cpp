@@ -2,8 +2,6 @@
 #include "valuesBuilder.h"
 #include "heatmapBuilder.h"
 #include <ctime>
-#include "paletteManager.h"
-#include <iostream>
 
 using namespace std;
 using namespace cv;
@@ -21,18 +19,18 @@ int main()
 		one = -one;
 		
 	}
-    
 	ValuesBuilder builder;
-	Mat_<Scalar> needed_mat = builder.getScalarMat(inputMat);
+	//Mat_<Scalar> needed_mat = builder.getDefaultColorsMat(inputMat);
 	HeatMapBuilder heat_map_builder;
-	Mat heatMap = heat_map_builder.createHeatMap(needed_mat);
+	//Mat heatMap = heat_map_builder.createHeatMap(needed_mat);
+	//imshow("heatMap", heatMap);
+	//waitKey(0);
+	char path[]{"palette.txt"};
+	//builder.createPaletteForValues(path, inputMat);
+	Mat scalars = builder.getCustomColorsMat(path, inputMat);
+	Mat heatMap = heat_map_builder.createHeatMap(scalars);
 	imshow("heatMap", heatMap);
 	waitKey(0);
-	PaletteManager manager;
-	char chr[]{"palette.txt"};
-	manager.readPaletteFile(chr);
-	manager.savePalette(chr);
-
     return 0;
 }
 

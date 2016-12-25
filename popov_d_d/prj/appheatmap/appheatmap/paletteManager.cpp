@@ -53,13 +53,37 @@ void PaletteManager::readPaletteFile(char*  path)
 		rgb_vector_.push_back(rgb_value);
 
 	}
-	for (int i = 0; i < rgb_vector_.size()-1; ++i)
+	
+}
+
+void PaletteManager::addColor(rgbValue value)
+{
+	if (!containsColor(value))
 	{
-		std::cout << rgb_vector_.at(i).value << " " << rgb_vector_.at(i).red << " " << rgb_vector_.at(i).green << " " << rgb_vector_.at(i).blue << " " << endl;
+		rgb_vector_.push_back(value);
 	}
 }
 
-void PaletteManager::addColor(int value, double red, double green, double blue)
+cv::Scalar PaletteManager::getColorForValue(int value)
 {
-	rgb_vector_.push_back(rgbValue(red, green, blue, value));
+	for (int i = 0; i < rgb_vector_.size(); ++i)
+	{
+		if (rgb_vector_[i].value == value)
+		{
+			return cv::Scalar(rgb_vector_[i].blue,rgb_vector_[i].green ,rgb_vector_[i].red);
+		}
+	}
+	return cv::Scalar(0.0, 0.0, 0.0);
+}
+
+bool PaletteManager::containsColor(rgbValue value)
+{
+	for (int i = 0; i < rgb_vector_.size(); ++i)
+	{
+		if (rgb_vector_[i].value == value.value)
+		{
+			return true;
+		}
+	}
+	return false;
 }

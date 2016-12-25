@@ -56,7 +56,7 @@ Mat ValuesBuilder::getCustomColorsMat(char * path, Mat & values)
 	{
 		for (int j = 0; j < values.cols; ++j)
 		{
-			mat.at<Scalar>(i, j) = palette_manager_.getColorForValue(values.at<int>(i, j));
+			mat.at<Scalar>(j, i) = palette_manager_.getColorForValue(values.at<int>(i, j));
 		}
 	}
 	return mat;

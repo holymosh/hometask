@@ -1,6 +1,7 @@
 #include "valuesBuilder.h"
 #include <opencv2/highgui.hpp>
 #include <iostream>
+#include "heatmapBuilder.h"
 
 using namespace cv;
 
@@ -10,10 +11,9 @@ ValuesBuilder::~ValuesBuilder()
 }
 
 
-
-Mat_<Scalar> ValuesBuilder::getScalarMat(Mat_<int>& values)
+Mat ValuesBuilder::getScalarMat(Mat& values)
 {
-	values = makeValuesValidIfNeeded(values);
+	//values = makeValuesValidIfNeeded(values);
 	/*for (int i = 0; i < values.rows; ++i)
 	{
 		for (int j = 0; j < values.cols; ++j)
@@ -22,7 +22,7 @@ Mat_<Scalar> ValuesBuilder::getScalarMat(Mat_<int>& values)
 		}
 		std::cout << std::endl;
 	}*/
-	Mat_<Scalar> scalarMat(values.rows, values.cols, DataType<Scalar>::type);
+	Mat scalarMat(values.rows, values.cols, DataType<Scalar>::type);
 	 scalarMat = createScalarMat(values);
 	 return scalarMat;
 }
@@ -63,49 +63,93 @@ Mat_<int>& ValuesBuilder::makeValuesValidIfNeeded(Mat_<int>& values)
 	return values;
 }
 
-Mat_<Scalar> ValuesBuilder::createScalarMat(const Mat& values)
+Mat_<Scalar> ValuesBuilder::createScalarMat( Mat& values)
 {
+	int min(values.at<int>(0, 0));
+	int max(min);
+	for (int i(0); i < values.rows; ++i)
+	{
+		for (int j(0); j < values.cols; ++j)
+		{
+			int currentValue(values.at<int>(i, j));
+			if (currentValue>max)
+			{
+				max = currentValue;;
+			}
+			if (currentValue<min)
+			{
+				min = currentValue;
+			}
+		}
+	}
 	Mat_<Scalar> neededMat(values.rows, values.cols, DataType<Scalar>::type);
 	for (int i = 0; i < neededMat.rows; ++i)
 	{
 		for (int j = 0; j < neededMat.cols; ++j)
 		{
-			neededMat.at<Scalar>(j, i) = createValue(values.at<int>(i, j));
+			neededMat.at<Scalar>(j, i) = createValuetest(values.at<int>(i, j),min,max);
 		}
 	}
-	return neededMat.clone();
+	return neededMat;
 }
 
-Scalar ValuesBuilder::createValue(int value)
+
+Scalar ValuesBuilder::createValuetest(int value , int min , int max)
 {
 	double red(0);
 	double green(0);
 	double blue(0);
-	for (int i(-20); i < value; ++i)
+	double avgValue((max + min) / 2);
+	if (value < avgValue)
 	{
-		if (i < 0)
+		blue += 25;
+		for (int i(min); i <value; ++i)
 		{
-			blue += 12.75;
+			blue += 255 / (avgValue - min);
 		}
-		if (!i)
+		return Scalar(blue, green, red);
+	}
+	
+	if (value>avgValue &&  value< ((max+avgValue)/2) )
+	{
+		green = 255;
+		blue = 0;
+		for (int i = avgValue; i < value; ++i)
 		{
-			green = 255;
-			blue = 0;
+			green -= 255 / ((max + avgValue));
 		}
-		if (i && i<=4)
+		return Scalar(blue, green, red);
+	}
+	if (value>avgValue &&  value> ((max + avgValue) / 2))
+	{
+		green = 255 - 2 * 18.214;
+		red = 255;
+		for (int i((max + avgValue) / 2); i < value; ++i)
 		{
-			green -= 63.75/2;
+			green -= 255 / (max - value+1);
 		}
-		if (i==5)
-		{
-			green = 255-2*18.214;
-			red = 255;
-		}
-		if (i>=6)
-		{
-			green -= 18.214;
-		}
-
+		return Scalar(blue, green, red);
 	}
 	return Scalar(blue, green, red);
+
+}
+
+CvMat create_Cvmat(CvMat* cv_mat)
+{
+	try
+	{
+		Mat_<int> mat(cv_mat->rows, cv_mat->cols, DataType<int>::type);
+		mat = cvarrToMat(cv_mat);
+		ValuesBuilder builder;
+		Mat_<Scalar> scalars = builder.getScalarMat(mat);
+		HeatMapBuilder hmpbuilder;
+		Mat heatmap = hmpbuilder.createHeatMap(scalars);
+		CvMat result(heatmap);
+		return result;
+
+	}
+	catch (Exception)
+	{
+		throw std::exception("exception");
+	}
 }

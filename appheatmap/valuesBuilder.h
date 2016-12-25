@@ -1,21 +1,18 @@
 #ifndef VALUESBUILDER
 #define VALUESBUILDER
 #include <opencv2/core/mat.hpp>
-#include <opencv2/core.hpp>
 using namespace cv;
 class ValuesBuilder
 {
 public:
 	ValuesBuilder()= default;
 	~ValuesBuilder();
-	Mat getScalarMat(Mat& values);
+	Mat_<Scalar> getScalarMat(Mat_<int>& values);
 private:
 	Mat_<int>& makeValuesValidIfNeeded(Mat_<int>& values);
-	Mat_<Scalar> createScalarMat(Mat& values);
+	Mat_<Scalar> createScalarMat(const Mat& values);
 	Scalar createValue(int value);
-	Scalar createValuetest(int value, int min, int max);
 
 
 };
-extern "C" CvMat create_Cvmat(CvMat* cv_mat);
 #endif

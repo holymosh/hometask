@@ -1,6 +1,5 @@
 #include "valuesBuilder.h"
 #include <opencv2/highgui.hpp>
-#include <iostream>
 #include "heatmapBuilder.h"
 
 using namespace cv;
@@ -139,7 +138,7 @@ rgbValue ValuesBuilder::createRgbValueStruct(int value, int min, int max)
 	double green(0);
 	double blue(0);
 	double avgValue((max + min) / 2);
-	if (value < avgValue)
+	if (value <= avgValue)
 	{
 		blue += 25;
 		for (int i(min); i <value; ++i)
@@ -149,7 +148,7 @@ rgbValue ValuesBuilder::createRgbValueStruct(int value, int min, int max)
 		return rgbValue(red, green, blue , value);
 	}
 
-	if (value>avgValue &&  value< ((max + avgValue) / 2))
+	if (value>avgValue &&  value<= ((max + avgValue) / 2))
 	{
 		green = 255;
 		blue = 0;
@@ -159,26 +158,26 @@ rgbValue ValuesBuilder::createRgbValueStruct(int value, int min, int max)
 		}
 		return rgbValue(red, green, blue, value);
 	}
-	if (value>avgValue &&  value>((max + avgValue) / 2))
+	if (value>avgValue &&  value>=((max + avgValue) / 2))
 	{
 		green = 255 - 2 * 18.214;
 		red = 255;
 		for (int i((max + avgValue) / 2); i < value; ++i)
 		{
-			green -= 255 / (max - value + 1);
+			green -=( 255 / (max - value + 1));
 		}
 		return rgbValue(red, green, blue, value);
 	}
 }
 
-CvMat create_Cvmat(CvMat* cv_mat)
+CvMat create_Cvmat(CvMat* cv_mat )
 {
 	try
 	{
-		Mat_<int> mat(cv_mat->rows, cv_mat->cols, DataType<int>::type);
+		Mat mat(cv_mat->rows, cv_mat->cols, DataType<int>::type);
 		mat = cvarrToMat(cv_mat);
 		ValuesBuilder builder;
-		Mat_<Scalar> scalars = builder.getDefaultColorsMat(mat);
+		Mat scalars = builder.getDefaultColorsMat(mat);
 		HeatMapBuilder hmpbuilder;
 		Mat heatmap = hmpbuilder.createHeatMap(scalars);
 		CvMat result(heatmap);

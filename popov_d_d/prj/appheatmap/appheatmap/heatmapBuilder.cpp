@@ -1,7 +1,6 @@
 #include "heatmapBuilder.h"
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui.hpp>
-#include <iostream>
 
 using namespace cv;
 
